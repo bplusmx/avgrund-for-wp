@@ -26,4 +26,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 define('JAB_AFW_VERSION', '0.1.0');
-define('JAB_AFW_PLUGIN_URL', plugin_dir_url( __FILE__ ));
+define('JAB_AFW__PATH',   dirname(__FILE__) );
+define('JAB_AFW_PLUGIN_URL',  untrailingslashit( plugin_dir_url(__FILE__) ) );
+
+add_action( 'wp_enqueue_scripts', 'jab_afw_scripts' );
+
+function jab_afw_scripts()
+{
+	wp_enqueue_script( 'jquery-avgrund', JAB_AFW_PLUGIN_URL . '/js/jquery.avgrund.js', array('jquery') );
+	wp_enqueue_script( 'jquery-cookie', JAB_AFW_PLUGIN_URL . '/js/jquery.cookie.js', array('jquery') );
+	wp_enqueue_style( 'avgrund', JAB_AFW_PLUGIN_URL . '/css/avgrund.css');
+}
